@@ -39,6 +39,18 @@ public class EstacionamientoServiceImpl implements EstacionamientoService {
     }
 
     @Override
+    public List<EstacionamientoDto> obtenerEstacionamientoVacio() {
+        List<Estacionamiento> estacionamientos = (List<Estacionamiento>) estacionamientoRepository.findEstacionamientoByEstado(true);
+        return estacionamientos
+                .stream()
+                .map(e -> DtoMapperEstacionamiento
+                        .builder()
+                        .setEstacionamiento(e)
+                        .build()
+                ).collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<EstacionamientoDto> encontrar(Long id) {
         return estacionamientoRepository.findById(id)
                 .map(e -> DtoMapperEstacionamiento

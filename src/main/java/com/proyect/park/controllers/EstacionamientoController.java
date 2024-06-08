@@ -28,6 +28,11 @@ public class EstacionamientoController {
         return estacionamientoService.obtener();
     }
 
+    @GetMapping("/libres")
+    public List<EstacionamientoDto> obtenerEstacionamientosLibres() {
+        return estacionamientoService.obtenerEstacionamientoVacio();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
         Optional<EstacionamientoDto> estacionamientoDtoOptional = estacionamientoService.encontrar(id);

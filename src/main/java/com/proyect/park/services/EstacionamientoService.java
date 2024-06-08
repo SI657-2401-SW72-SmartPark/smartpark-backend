@@ -12,6 +12,8 @@ public interface EstacionamientoService {
 
     List<EstacionamientoDto> obtener();
 
+    List<EstacionamientoDto> obtenerEstacionamientoVacio();
+
     Optional<EstacionamientoDto> encontrar(Long id);
 
     EstacionamientoDto guardar(EstacionamientoDto reserva);
