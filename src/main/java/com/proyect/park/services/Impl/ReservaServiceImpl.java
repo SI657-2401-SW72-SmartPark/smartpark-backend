@@ -2,9 +2,11 @@ package com.proyect.park.services.Impl;
 
 import com.proyect.park.models.dto.ReservaDto;
 import com.proyect.park.models.dto.mapper.DtoMapperReserva;
+import com.proyect.park.models.entities.Estacionamiento;
 import com.proyect.park.models.entities.Reserva;
 import com.proyect.park.models.entities.Vehiculo;
 import com.proyect.park.models.request.ReservaRequest;
+import com.proyect.park.repositories.EstacionamientoRepository;
 import com.proyect.park.repositories.ReservaRepository;
 import com.proyect.park.repositories.VehiculoRepository;
 import com.proyect.park.services.ReservaService;
@@ -25,6 +27,8 @@ public class ReservaServiceImpl implements ReservaService {
     @Autowired
     private VehiculoRepository vehiculoRepository;
 
+    @Autowired
+    private EstacionamientoRepository estacionamientoRepository;
 
     @Override
     public List<ReservaDto> obtener() {
@@ -48,18 +52,38 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public ReservaDto guardar(ReservaDto reserva) {
+    public ReservaDto guardar(ReservaDto reserva,Long id) {
 
         Optional<Vehiculo> auto = vehiculoRepository.findById(reserva.getVehiculo());
+        //Vehiculo vehiculo = auto.orElseThrow(() -> new IllegalArgumentException("Vehiculo no encontrado"));
+        Optional<Estacionamiento> estacionamientoOptional = estacionamientoRepository.findById(id);
         Vehiculo vehiculo = auto.orElseThrow(() -> new IllegalArgumentException("Vehiculo no encontrado"));
 
         Reserva reservaAux = new Reserva();
+
+        Estacionamiento estacionamientoAux = new Estacionamiento();
+
+        if(estacionamientoOptional.isPresent()){
+            Estacionamiento estacionamientoDB = estacionamientoOptional.orElseThrow();
+            estacionamientoDB.setEstado(false);
+
+             estacionamientoRepository.save(estacionamientoDB);
+        }
 
         reservaAux.setInicioReserva(reserva.getInicioReserva());
         reservaAux.setHoras(reserva.getHoras());
         reservaAux.setVehiculo(vehiculo);
 
+
+
+        // estado del estacionamiento id
+
+
+
+
+
         return DtoMapperReserva.builder().setReserva(reservaRepository.save(reservaAux)).build();
+
     }
 
     @Override

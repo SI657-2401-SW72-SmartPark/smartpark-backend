@@ -12,7 +12,7 @@ public interface ReservaService {
 
     Optional<ReservaDto> encontrar(Long id);
 
-    ReservaDto guardar(ReservaDto reserva);
+    ReservaDto guardar(ReservaDto reserva, Long id);
 
     Optional<ReservaDto> actualizar(ReservaRequest reserva, Long id);
 

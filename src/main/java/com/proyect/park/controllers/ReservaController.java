@@ -38,13 +38,13 @@ public class ReservaController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/guardar")
-    public ResponseEntity<?> guardar(@Valid @RequestBody ReservaDto reserva, BindingResult result) {
+    @PostMapping("/guardar/{id}")
+    public ResponseEntity<?> guardar(@Valid @RequestBody ReservaDto reserva, BindingResult result,@PathVariable Long id) {
         if (result.hasErrors()) {
             return validation(result);
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(reservaService.guardar(reserva));
+        return ResponseEntity.status(HttpStatus.CREATED).body(reservaService.guardar(reserva, id));
     }
 
     @PutMapping("/actualizar/{id}")
