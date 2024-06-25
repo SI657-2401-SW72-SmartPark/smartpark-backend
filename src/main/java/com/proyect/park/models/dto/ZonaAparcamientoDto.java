@@ -9,10 +9,11 @@ public class ZonaAparcamientoDto {
     private String descripcion;
     private String pais;
     private String localizacion;
+    private String coordenadas;
     private String imagen;
     private Long usuario;
 
-    public ZonaAparcamientoDto(Long id, String nombre, String direccion, Integer numeroEstacionamiento, String descripcion, String pais, String localizacion, String imagen, Long usuario) {
+    public ZonaAparcamientoDto(Long id, String nombre, String direccion, Integer numeroEstacionamiento, String descripcion, String pais, String localizacion, String coordenadas, String imagen, Long usuario) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -20,6 +21,7 @@ public class ZonaAparcamientoDto {
         this.descripcion = descripcion;
         this.pais = pais;
         this.localizacion = localizacion;
+        this.coordenadas = coordenadas;
         this.imagen = imagen;
         this.usuario = usuario;
     }
@@ -86,6 +88,14 @@ public class ZonaAparcamientoDto {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
     }
 
     public Long getUsuario() {

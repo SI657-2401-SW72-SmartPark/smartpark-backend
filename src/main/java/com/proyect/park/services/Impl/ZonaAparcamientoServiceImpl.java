@@ -62,6 +62,7 @@ public class ZonaAparcamientoServiceImpl implements ZonaAparcamientoService {
         zonaAparcamientoAux.setPais(zonaAparcamientoDto.getPais());
         zonaAparcamientoAux.setLocalizacion(zonaAparcamientoDto.getLocalizacion());
         zonaAparcamientoAux.setImagen(zonaAparcamientoDto.getImagen());
+        zonaAparcamientoAux.setCoordenadas(zonaAparcamientoDto.getCoordenadas());
         zonaAparcamientoAux.setUsuario(usuario);
 
         return DtoMapperZonaAparcamiento.builder().setZonaAparcamiento(zonaAparcamientoRepository.save(zonaAparcamientoAux)).build();
@@ -71,7 +72,7 @@ public class ZonaAparcamientoServiceImpl implements ZonaAparcamientoService {
     public Optional<ZonaAparcamientoDto> actualizar(ZonaAparcamientoRequest zonaAparcamientoRequest, Long id) {
         Optional<ZonaAparcamiento> zonaAparcamientoOptional = zonaAparcamientoRepository.findById(id);
 
-        // agregar si falta más atributos en Long en vez de la entidad: Ejemplo Usuario user por Long user, solo paso el Id
+        // agregar si falta más atributos en Long en vez de la entidad: Ejemplo Usuario user por Long user, solo paso elId
 
         ZonaAparcamiento zonaAparcamientoAux = null;
         if (zonaAparcamientoOptional.isPresent()){
@@ -85,8 +86,9 @@ public class ZonaAparcamientoServiceImpl implements ZonaAparcamientoService {
             zonaAparcamientoDB.setPais(zonaAparcamientoRequest.getPais());
             zonaAparcamientoDB.setLocalizacion(zonaAparcamientoRequest.getLocalizacion());
             zonaAparcamientoDB.setImagen(zonaAparcamientoRequest.getImagen());
+            zonaAparcamientoDB.setCoordenadas(zonaAparcamientoRequest.getCoordenadas());
 
-            zonaAparcamientoAux = zonaAparcamientoRepository.save(zonaAparcamientoDB);
+            zonaAparcamientoDB = zonaAparcamientoRepository.save(zonaAparcamientoDB);
 
         }
         return Optional.ofNullable(DtoMapperZonaAparcamiento.builder().setZonaAparcamiento(zonaAparcamientoAux).build());

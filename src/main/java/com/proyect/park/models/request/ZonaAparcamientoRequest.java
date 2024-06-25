@@ -8,6 +8,7 @@ public class ZonaAparcamientoRequest {
     private Integer numeroEstacionamiento;
     private String descripcion;
     private String pais;
+    private String coordenadas;
     private String localizacion;
     private String imagen;
     private Long usuario;
@@ -74,6 +75,14 @@ public class ZonaAparcamientoRequest {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
     }
 
     public Long getUsuario() {

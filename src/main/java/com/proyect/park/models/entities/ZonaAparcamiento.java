@@ -32,6 +32,9 @@ public class ZonaAparcamiento {
     @Column(name = "imagen", length = 300)
     private String imagen;
 
+    @Column(name = "coordenadas", length = 60)
+    private String coordenadas;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -109,5 +112,21 @@ public class ZonaAparcamiento {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
+    public List<Estacionamiento> getEstacinamientos() {
+        return estacinamientos;
+    }
+
+    public void setEstacinamientos(List<Estacionamiento> estacinamientos) {
+        this.estacinamientos = estacinamientos;
     }
 }

@@ -34,6 +34,7 @@ public class DtoMapperZonaAparcamiento {
                 ,zonaAparcamiento.getPais()
                 ,zonaAparcamiento.getLocalizacion()
                 ,zonaAparcamiento.getImagen()
+                ,zonaAparcamiento.getCoordenadas()
                 ,UsuarioId
         );
     }
