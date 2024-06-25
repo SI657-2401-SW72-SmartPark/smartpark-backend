@@ -10,6 +10,7 @@ import com.proyect.park.repositories.ZonaAparcamientoRepository;
 import com.proyect.park.services.EstacionamientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -18,6 +19,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class EstacionamientoServiceImpl implements EstacionamientoService {
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private EstacionamientoRepository estacionamientoRepository;
@@ -52,6 +56,8 @@ public class EstacionamientoServiceImpl implements EstacionamientoService {
 
     @Override
     public Optional<EstacionamientoDto> encontrar(Long id) {
+        String url= "https://wokwi.com/projects/400144907982487553";
+
         return estacionamientoRepository.findById(id)
                 .map(e -> DtoMapperEstacionamiento
                         .builder()
